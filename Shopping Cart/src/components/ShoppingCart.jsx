@@ -21,10 +21,15 @@ function ShoppingCart() {
           {cart.map((item) => (
             <div
               key={item.id}
-              className="flex items-center justify-between mb-2"
+              className="flex items-center justify-between mb-4 p-2 border-b"
             >
-              <span>{item.name}</span>
               <div>
+                <span className="font-bold">{item.title}</span>
+                <p className="text-sm text-gray-600">
+                  ${item.price.toFixed(2)} each
+                </p>
+              </div>
+              <div className="flex items-center">
                 <input
                   type="number"
                   min="1"
@@ -39,6 +44,9 @@ function ShoppingCart() {
                   }
                   className="w-16 mx-2 border rounded p-1"
                 />
+                <p className="mr-4">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </p>
                 <button
                   onClick={() => dispatch(removeFromCart(item.id))}
                   className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
@@ -48,7 +56,7 @@ function ShoppingCart() {
               </div>
             </div>
           ))}
-          <div className="mt-4">
+          <div className="mt-4 text-right">
             <strong>Total: ${totalPrice.toFixed(2)}</strong>
           </div>
         </div>
